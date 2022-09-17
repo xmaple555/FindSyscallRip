@@ -57,7 +57,7 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
 Finally, we can use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: different Windows OS version, syscalls and kernel driver code will cause the different offset. Therefore, it should be repeted yourself.
 
 ## Maplestory
-Maplestory uses two different methods to perform integrity checks of its process memory: Maplestory.exe reads its memory directly, and Maplestory's anti-cheat, Nexon game security, uses NtReadVirtualMemory to read Maplestory.exe memory. The first method is easy to bypass: set breakpoints at Maplestory memory to find out what address Maplestory.exe does integrity checks to patch them. The second one is much more difficult because Nexon game security doesn't call NtReadVirtualMemory in ntdll module, and the process is highly packed by Themida. To find out where NtReadVirtualMemory is, we use the same technique.
+Maplestory uses two different methods to perform integrity checks of its process memory: Maplestory.exe reads its memory directly, and Maplestory's anti-cheat, Nexon game security, uses NtReadVirtualMemory to read Maplestory.exe memory. The first method is easy to bypass: set breakpoints at Maplestory memory to find out what address Maplestory.exe performs integrity checks to patch them. The second one is much more difficult because Nexon game security doesn't call NtReadVirtualMemory in ntdll module, and the process is highly packed by Themida. To find out where NtReadVirtualMemory is, we use the same technique.
 
 ![](demo/7.png)
 ![](demo/8.png)
