@@ -53,4 +53,4 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
     }
 ```
 
-Finally, we use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: Windows OS version, syscalls and kernel drivers will cause the different offset. Therefore, it should be repeted yourself.
+Finally, we use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: Windows OS version, syscalls and kernel driver code will cause the different offset. Therefore, it should be repeted yourself.
