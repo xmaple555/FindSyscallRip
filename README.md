@@ -17,7 +17,7 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
         DebugMessage("[+] NtQuerySystemInformation from %s\n", Misc::PsGetProcessImageFileName2(PsGetCurrentProcess()));                         
     }
 ```
-First, we hook NtQuerySystemInformation and compare the current PID. The purpose here is to monitor the syscall the process has called, and we can set a conditional breakpoint in Windbg to get hit when only the process call NtQuerySystemInformation.
+First, we hook NtQuerySystemInformation and compare the current PID. The purpose here is to monitor the syscall the process has called, and we can set a conditional breakpoint in Windbg to get hit when the specified process call NtQuerySystemInformation.
 
 ![](demo/2.png)
 
