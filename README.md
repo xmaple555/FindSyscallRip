@@ -3,7 +3,7 @@
 
 # Demo
 ## UsingWinSyscall
-Before we do anything, we need to know what address UsingWinSyscall call NtQuerySystemInformation at. Because UsingWinSyscall use VirtualAlloc to allocate the syscall memory, we need to find the adress via dynamic analysis.
+Before doing anything, we need to know what address UsingWinSyscall call NtQuerySystemInformation at. Because UsingWinSyscall use VirtualAlloc to allocate the syscall memory, we need to find the adress via dynamic analysis.
 
 ![](demo/0.png)
 
@@ -54,4 +54,12 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
     }
 ```
 
-Finally, we use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: Different Windows OS version, syscalls and kernel driver code will cause the different offset. Therefore, it should be repeted yourself.
+Finally, we can use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: different Windows OS version, syscalls and kernel driver code will cause the different offset. Therefore, it should be repeted yourself.
+
+## Maplestory
+Maplestory uses two different methods to perform integrity checks of its process memory: Maplestory.exe reads its memory directly, and Maplestory's anti-cheat, Nexon game security, uses NtReadVirtualMemory to read Maplestory.exe memory. The first method is easy to bypass: set breakpoints at Maplestory memory to find out what address Maplestory.exe does integrity checks to patch them. The second one is much more difficult because Nexon game security doesn't call NtReadVirtualMemory in ntdll module, and the process is highly packed by Themida. To find out where NtReadVirtualMemory is, we use the same technique.
+
+![](demo/7.png)
+![](demo/8.png)
+
+Now we know that NtReadVirtualMemory is in BC473D module. It looks very interesting :) .
