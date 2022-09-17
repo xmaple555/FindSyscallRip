@@ -29,7 +29,7 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
         DebugMessage("[+] StackFrame = %llx \n", StackFrame);
     }
 ```
-Proceeding that, we use `_AddressOfReturnAddress()` to get the pointer that points the return address of HookNtQuerySystemInformation. The purpose is to get one address in the stack frame because MSVC compiler doesn't support in-line asm code in the x64 architecture to get the rip directly. As the picutre, we know that the address is 0xffffef03012b5af8.
+Proceeding that, we use `_AddressOfReturnAddress()` to get the pointer that points the return address of HookNtQuerySystemInformation. The purpose is to get one address in the stack frame because MSVC compiler doesn't support inline asm code in the x64 architecture to get the rip directly. As the picutre, we know that the address is 0xffffef03012b5af8.
 
 ![](demo/4.png)
 
@@ -54,4 +54,4 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
     }
 ```
 
-Finally, we use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: Windows OS version, syscalls and kernel driver code will cause the different offset. Therefore, it should be repeted yourself.
+Finally, we use the rip address of HookNtQuerySystemInformation and the byte offset to know what address has the value of the user-mode rip. It is noteworthy that the offset is case-by-case: Different Windows OS version, syscalls and kernel driver code will cause the different offset. Therefore, it should be repeted yourself.
