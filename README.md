@@ -32,7 +32,7 @@ Proceeding that, we use `_AddressOfReturnAddress()` to get the pointer that poin
 
 ![](demo/4.png)
 
-To know what address the value of the user-mode rip is, we use the backtrace command `k` to list the return addresses. As we can see, the return address of KiSystemServiceCopyEnd+0x25 is 00000027805ce0014, the address of the user-mode rip. 
+To know what address the value of the user-mode rip is in the kernel, we use the backtrace command `k` to list the return addresses. As we can see, the return address of KiSystemServiceCopyEnd+0x25 is 00000027805ce0014, the address of the user-mode rip. 
 
 ![](demo/5.png)
 
