@@ -3,7 +3,7 @@
 
 # Demo
 ## UsingWinSyscall
-Before doing anything, we need to know what address UsingWinSyscall call NtQuerySystemInformation at. Because UsingWinSyscall use VirtualAlloc to allocate the syscall memory, we need to find the adress via dynamic analysis.
+Before doing anything, we need to know what address UsingWinSyscall call NtQuerySystemInformation at. Because UsingWinSyscall uses VirtualAlloc to allocate the syscall memory, we need to find the adress via dynamic analysis.
 
 ![](demo/0.png)
 
