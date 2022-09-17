@@ -29,7 +29,7 @@ if (PsGetCurrentProcessId() == data::ProcessPID)
         DebugMessage("[+] StackFrame = %llx \n", StackFrame);
     }
 ```
-Proceeding that, we use `_AddressOfReturnAddress()` to get the pointer that points the return address of HookNtQuerySystemInformation. The purpose is to get one address in the stack frame because MSVC compiler doesn't support inline asm code in the x64 architecture to get the rip directly. As the picutre, we know that the address is 0xffffef03012b5af8.
+Proceeding that, we use `_AddressOfReturnAddress()` to get the pointer that points to the return address of HookNtQuerySystemInformation. The purpose is to get one address in the stack frame because MSVC compiler doesn't support inline asm code in the x64 architecture to get the rip directly. As the picutre, we know that the address is 0xffffef03012b5af8.
 
 ![](demo/4.png)
 
