@@ -1,10 +1,3 @@
-# UsingWinSyscall
-UsingWinSyscall is a simple example of how to use Windows syscalls. Instead of using GetProcAddress, UsingWinSyscall defines the assembly of x86/x64 syscall to call ntapi. Therefore, we cannot find out what syscall it calls by looking it up in the import address table or setting breakpoints at GetProcAddress and the address of the syscall in ntdll. Since Windows OS frequently updates SSDT table, UsingWinSyscall reads ntdll file to find SSDT index.
-
-# Demo
-The program uses NTQuerySystemInformation to list  running processes. However, we notice that there is no GetProcAddress in the import address table, and the breakpoint at the address of NTQuerySystemInformation doesn't get hit.
-
-![](https://i.imgur.com/yFnvgB1.png)
-![](demo.gif)
-
+# FindSyscallRip
+[UsingWinSyscall](https://github.com/xmaple555/UsingWinSyscall) demonstrates how to call Windows syscalls without getting the ntapi's address. Sometimes the program may be highly packed, so it is almost impossible to find out what syscall the program uses via static and dynamic analyses. Unlike Linux, Windows doesn't have any tools to trace syscalls, so we need to use Windows kernel drivers and Windbg to access Windows kernel to figure out. Here we will hook SSDT to find out what syscall has been used and where it is called in user-mode program.
 
